@@ -1,8 +1,8 @@
 export default[
-    {
-        path: '/About',
-        component: () =>
-            import ('../views/About'),
-        name: 'About',
-    },
+    // {
+    //     path: '/About',
+    //     component: () =>
+    //         import ('../views/About'),
+    //     name: 'About',
+    // },
 ]
