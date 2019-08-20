@@ -1,61 +1,46 @@
-import Login from '../views/Login.vue'
-import NotFound from '../views/404.vue'
-import Home from '../views/Home.vue'
-import Main from '../views/Main.vue'
-import Table from '../views/nav1/Table.vue'
-import Form from '../views/nav1/Form.vue'
-import user from '../views/nav1/user.vue'
-import Page4 from '../views/nav2/Page4.vue'
-import Page5 from '../views/nav2/Page5.vue'
-import Page6 from '../views/nav3/Page6.vue'
 export default[
     {
         path: '/Login',
-        component: Login,
+        component: () => import ('../views/Login.vue'),
         name: '',
         hidden: true
-    },
-    {
-        path: '/404',
-        component: NotFound,
-        name: '',
-        hidden: true
-    },
-    {
-        path: '/',
-        component: Home,
-        name: '导航一',
-        iconCls: 'el-icon-message',//图标样式class
-        children: [
-            { path: '/main', component: Main, name: '文字快乐' },
-            { path: '/table', component: Table, name: '图片快乐' },
-            { path: '/form', component: Form, name: '快乐视频' },
-            { path: '/user', component: user, name: '快乐动图' },
-        ]
-    },
-    {
-        path: '/',
-        component: Home,
-        name: '导航二',
-        iconCls: 'fa fa-id-card-o',
-        children: [
-            { path: '/page4', component: Page4, name: '页面4' },
-            { path: '/page5', component: Page5, name: '页面5' }
-        ]
-    },
-    {
-        path: '/',
-        component: Home,
-        name: '',
-        iconCls: 'fa fa-address-card',
-        leaf: true,//只有一个节点
-        children: [
-            { path: '/page6', component: Page6, name: '导航三' }
-        ]
     },
     {
         path: '*',
-        hidden: true,
-        redirect: { path: '/404' }
-    }
+        component: () => import ('../views/404.vue'),
+        name: '',
+        hidden: true
+    },
+    {
+        path: '/',
+        component: () => import ('../views/Home.vue'),
+        name: '我的快乐',
+        iconCls: 'fa fa-heartbeat',//图标样式class
+        children: [
+            { path: '/HappyPassages',component: () => import ('../views/nav1/HappyPassages.vue'), name: '快乐段子' },
+            { path: '/HappyPhoto', component: () => import ('../views/nav1/HappyPhoto.vue'), name: '图片快乐' },
+            { path: '/HappyVideo', component: () => import ('../views/nav1/HappyVideo.vue'), name: '快乐视频' },
+            { path: '/HappyMotionMap', component: () => import ('../views/nav1/HappyMotionMap.vue'), name: '快乐动图' },
+        ]
+    },
+    {
+        path: '/',
+        component: () => import ('../views/Home.vue'),
+        name: '导航二',
+        iconCls: 'fa fa-id-card-o',
+        children: [
+            { path: '/page4',component: () => import ('../views/nav2/Page4.vue'), name: '页面4' },
+            { path: '/page5',component: () => import ('../views/nav2/Page5'), name: '页面5' }
+        ]
+    },
+    {
+        path: '/',
+        component: () => import ('../views/Home.vue'),
+        name: '',
+        iconCls: 'fa fa-music',
+        leaf: true,//只有一个节点
+        children: [
+            { path: '/MusicRadios', component: () => import ('../views/nav3/MusicRadios.vue'), name: '热门电台' }
+        ]
+    },
 ]

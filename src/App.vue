@@ -5,7 +5,18 @@
 </template>
 <script>
   export default {
-    name: 'app'
+    name: 'app',
+    mounted() {
+      var user = localStorage.getItem('user');
+      if (user) {
+      }else {
+        this.$message.warning('请登录！');
+        var _this=this;
+        setTimeout(function () {
+          _this.$router.push({ path: '/login' });
+        },500)
+      }
+    }
   }
 
 </script>

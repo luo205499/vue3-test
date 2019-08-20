@@ -16,13 +16,13 @@
 </template>
 
 <script>
-  //import NProgress from 'nprogress'
+  import {get} from "../api/api";
   export default {
     data() {
       return {
         logining: false,
         ruleForm2: {
-          account: 'admin',
+          account: '13594347817',
           checkPass: '123456'
         },
         rules2: {
@@ -46,9 +46,18 @@
         var _this = this;
         this.$refs.ruleForm2.validate((valid) => {
           if (valid) {
-            //_this.$router.replace('/table');
-            this.logining = true;
+            get('login',{key:"00d91e8e0cca2b76f515926a36db68f5",phone:_this.ruleForm2.account,passwd:_this.ruleForm2.checkPass}).then((data)=>{
+              this.logining = false;
+              if (data.code==200){
+                var user={name:data.data.name,img:data.data.img};
+                localStorage.setItem("user",JSON.stringify(user));
                 this.$router.push({ path: '/main' });
+              } else {
+                this.$message.error('账号或者密码错误');
+              }
+            });
+            this.logining = true;
+
           } else {
             console.log('error submit!!');
             return false;

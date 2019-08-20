@@ -9,7 +9,7 @@
 							<span class="data-text">{{i.username}}</span>
 						</div>
 						<p><span>{{i.text}}</span></p>
-						<p><img class="data-img" :src=i.image /></p>
+						<p><img class="data-img" :src=i.gif /></p>
 						<p class="data-love"><i style="color: rgba(255,65,70,0.76)" class="fa fa-heart-o"></i><span class="data-up">{{i.up}}</span></p>
 					</li>
 				</ul>
@@ -36,7 +36,7 @@
 		methods:{
 			getData(){
 				this.page=this.page+1;
-				get('',{type:3,page:this.page}).then(({code,data})=>{
+				get('satinGodApi',{type:4,page:this.page}).then(({code,data})=>{
 					if(code==200){
 						this.dataList=data;
 						console.log(data);
@@ -64,12 +64,5 @@
 	.more{
 		margin-left: 40px;
 		width: 100px;
-	}
-	.data-img{
-		width: 100%;
-		height: 100%;
-		background-position: center;
-		background-size:cover;
-		background-repeat: no-repeat;
 	}
 </style>

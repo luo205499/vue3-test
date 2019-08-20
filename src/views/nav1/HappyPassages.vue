@@ -21,7 +21,7 @@
 	</div>
 </template>
 <script>
-	import {get} from "../api/api";
+	import {get} from "../../api/api";
 	export default {
 		data(){
 			return{
@@ -35,7 +35,7 @@
 		methods:{
 			getData(){
 				this.page=this.page+1;
-				get('',{type:2,page:this.page}).then(({code,data})=>{
+				get('satinGodApi',{type:2,page:this.page}).then(({code,data})=>{
 					if(code==200){
 						this.dataList=data;
 						console.log(data);
