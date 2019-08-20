@@ -6,6 +6,6 @@ Vue.use(VueRouter);
 const baseRoutes = [];
 const routes = baseRoutes.concat(routes1, routes2);
 export default new VueRouter({
-    mode: 'history',
+    mode: 'history',//去除访问路径“#”
     routes,
 });

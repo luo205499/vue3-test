@@ -51,7 +51,7 @@
               if (data.code==200){
                 var user={name:data.data.name,img:data.data.img};
                 localStorage.setItem("user",JSON.stringify(user));
-                this.$router.push({ path: '/main' });
+                this.$router.push({ path: '/HappyPassages' });
               } else {
                 this.$message.error('账号或者密码错误');
               }

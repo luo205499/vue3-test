@@ -3,7 +3,6 @@
 		<el-col :span="24" class="header">
 			<el-col :span="10" class="logo" :class="collapsed?'logo-collapse-width':'logo-width'">
 				{{sysName}}
-<!--				{{collapsed?sysName:sysName}}-->
 			</el-col>
 			<el-col :span="10">
 				<div class="tools" @click.prevent="collapse">
@@ -77,26 +76,12 @@
 		data() {
 			return {
 				sysName:'HELLO LCL',
-                sysName2:'V',
 				collapsed:false,
 				sysUserName: '',
 				sysUserAvatar: '',
-				form: {
-					name: '',
-					region: '',
-					date1: '',
-					date2: '',
-					delivery: false,
-					type: [],
-					resource: '',
-					desc: ''
-				}
 			}
 		},
 		methods: {
-			onSubmit() {
-				console.log('submit!');
-			},
 			handleopen() {
 				//console.log('handleopen');
 			},
@@ -109,7 +94,6 @@
 			logout: function () {
 				var _this = this;
 				this.$confirm('确认退出吗?', '提示', {
-					//type: 'warning'
 				}).then(() => {
 					localStorage.removeItem('user');
 					_this.$router.push('/login');
