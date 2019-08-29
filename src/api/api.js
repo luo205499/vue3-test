@@ -1,7 +1,7 @@
 import axios from 'axios'
 const service = axios.create({
     baseURL: 'https://api.apiopen.top/getJoke', // api的base_url
-    timeout: 500000 // 请求超时时间
+    timeout: 200000 // 请求超时时间
 })
 
 // request拦截器
