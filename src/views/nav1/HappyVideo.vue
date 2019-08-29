@@ -3,10 +3,10 @@
 		<el-row :gutter="20">
 			<el-col :span="12" :offset="6"><div>
 				<ul style="list-style: none">
-					<li v-for="i in dataList" :key="dataList.uid">
-						<div class="">
+					<li v-for="i in dataList" :key="i.uid">
+						<div>
 							<img style="border-radius: 50%;" :src=i.header height="30" width="30"/>
-							<span class="data-text">{{i.username}}</span>
+							<span class="data-text">{{i.name}}</span>
 						</div>
 						<p><span>{{i.text}}</span></p>
 						<p><video controls class="data-video">
@@ -19,7 +19,7 @@
 				</ul>
 			</div>
 				<el-button type="button" class="more" @click="getData()">再爽一次</el-button>
-				<button @click="scrollToTop">回到顶部</button>
+<!--				<button @click="scrollToTop">回到顶部</button>-->
 			</el-col>
 
 		</el-row>
@@ -32,7 +32,7 @@
 		data(){
 			return{
 				dataList:[],
-				page: 1,
+				page: 0,
 			}
 		},
 		mounted() {
@@ -84,9 +84,9 @@
 			},
 			getData(){
 				this.page=this.page+1;
-				get('satinGodApi',{type:1,page:this.page}).then(({code,data})=>{
-					if(code==200){
-						this.dataList=data;
+				get('',{type:"video",page:this.page,count:10}).then((data)=>{
+					if(data.code==200){
+						this.dataList=data.result;
 						console.log(data);
 					}
 				})

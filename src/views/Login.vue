@@ -46,7 +46,7 @@
         var _this = this;
         this.$refs.ruleForm2.validate((valid) => {
           if (valid) {
-            get('login',{key:"00d91e8e0cca2b76f515926a36db68f5",phone:_this.ruleForm2.account,passwd:_this.ruleForm2.checkPass}).then((data)=>{
+            get('https://www.apiopen.top/login',{key:"00d91e8e0cca2b76f515926a36db68f5",phone:_this.ruleForm2.account,passwd:_this.ruleForm2.checkPass}).then((data)=>{
               this.logining = false;
               if (data.code==200){
                 var user={name:data.data.name,img:data.data.img};

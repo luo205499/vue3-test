@@ -1,6 +1,6 @@
 import axios from 'axios'
 const service = axios.create({
-    baseURL: 'https://www.apiopen.top/', // api的base_url
+    baseURL: 'https://api.apiopen.top/getJoke', // api的base_url
     timeout: 500000 // 请求超时时间
 })
 

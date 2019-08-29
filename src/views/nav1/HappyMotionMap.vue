@@ -6,10 +6,10 @@
 					<li v-for="i in dataList" :key="dataList.uid">
 						<div class="">
 							<img style="border-radius: 50%;" :src=i.header height="30" width="30"/>
-							<span class="data-text">{{i.username}}</span>
+							<span class="data-text">{{i.name}}</span>
 						</div>
 						<p><span>{{i.text}}</span></p>
-						<p><img class="data-img" :src=i.gif /></p>
+						<p><img class="data-img" :src=i.images /></p>
 						<p class="data-love"><i style="color: rgba(255,65,70,0.76)" class="fa fa-heart-o"></i><span class="data-up">{{i.up}}</span></p>
 					</li>
 				</ul>
@@ -36,9 +36,9 @@
 		methods:{
 			getData(){
 				this.page=this.page+1;
-				get('satinGodApi',{type:4,page:this.page}).then(({code,data})=>{
-					if(code==200){
-						this.dataList=data;
+				get('',{type:"gif",page:this.page,count:10}).then((data)=>{
+					if(data.code==200){
+						this.dataList=data.result;
 						console.log(data);
 					}
 				})
