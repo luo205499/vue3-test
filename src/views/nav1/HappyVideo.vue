@@ -91,14 +91,9 @@
 					this.listLoading=false;
 					if(data.code==200){
 						this.dataList=data.result;
-						console.log(data);
 					}
 				}).catch((err)=>{
 					this.listLoading=false;
-					this.$message({
-						message:"网络请求失败，请重试！",
-						type:"warning"
-					})
 				})
 			},
 		}

@@ -1,4 +1,5 @@
 <template>
+  <div class="login">
   <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px" class="demo-ruleForm login-container">
     <h3 class="title">系统登录</h3>
     <el-form-item prop="account">
@@ -10,9 +11,9 @@
     <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
     <el-form-item style="width:100%;">
       <el-button type="primary" style="width:100%;" @click.native.prevent="handleSubmit2" :loading="logining">登录</el-button>
-      <!--<el-button @click.native.prevent="handleReset2">重置</el-button>-->
     </el-form-item>
   </el-form>
+  </div>
 </template>
 
 <script>
@@ -28,11 +29,9 @@
         rules2: {
           account: [
             { required: true, message: '请输入账号', trigger: 'blur' },
-            //{ validator: validaePass }
           ],
           checkPass: [
             { required: true, message: '请输入密码', trigger: 'blur' },
-            //{ validator: validaePass2 }
           ]
         },
         checked: true
@@ -45,8 +44,12 @@
       handleSubmit2(ev) {
         var _this = this;
         this.$refs.ruleForm2.validate((valid) => {
+          this.logining = true;
           if (valid) {
-            get('https://www.apiopen.top/login',{key:"00d91e8e0cca2b76f515926a36db68f5",phone:_this.ruleForm2.account,passwd:_this.ruleForm2.checkPass}).then((data)=>{
+            get('https://www.apiopen.top/login',
+                    {key:"00d91e8e0cca2b76f515926a36db68f5",
+                      phone:_this.ruleForm2.account,
+                      passwd:_this.ruleForm2.checkPass}).then((data)=>{
               this.logining = false;
               if (data.code==200){
                 var user={name:data.data.name,img:data.data.img};
@@ -55,9 +58,9 @@
               } else {
                 this.$message.error('账号或者密码错误');
               }
+            }).catch(err=>{
+              this.logining = false;
             });
-            this.logining = true;
-
           } else {
             console.log('error submit!!');
             return false;
@@ -70,16 +73,27 @@
 </script>
 
 <style lang="scss" scoped>
+  .login{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-image: url("../assets/images/login_backgroung.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
   .login-container {
-    /*box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);*/
     -webkit-border-radius: 5px;
     border-radius: 5px;
     -moz-border-radius: 5px;
     background-clip: padding-box;
-    margin: 180px auto;
+    position: absolute;
+    top: 20%;
+    right: 35%;
     width: 350px;
     padding: 35px 35px 15px 35px;
-    background: #fff;
+    background: rgb(255, 255, 255);
     border: 1px solid #eaeaea;
     box-shadow: 0 0 25px #cac6c6;
     .title {

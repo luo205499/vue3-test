@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { Message } from 'element-ui';
 const service = axios.create({
     baseURL: 'https://api.apiopen.top/getJoke', // api的base_url
-    timeout: 200000 // 请求超时时间
+    timeout: 100000 // 请求超时时间
 })
 
 // request拦截器
@@ -11,7 +12,7 @@ service.interceptors.request.use(config => {
         config.headers["content-type"] = "application/json"
     return config
 }, error => {
-    Promise.reject(error)
+    Promise.reject(error);
 })
 
 // respone拦截器
@@ -20,7 +21,11 @@ service.interceptors.response.use(
         return response.data
     },
     error => {
-        return Promise.reject(error)
+        Message({
+            message:"网络错误，请重试!",
+            type:"error"
+        })
+        return Promise.reject(error);
     }
 )
 

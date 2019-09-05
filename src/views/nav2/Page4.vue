@@ -2,14 +2,13 @@
   <div>
     <h1>vuex 测试</h1>
     Clicked: {{ getCount }} times
-    <button @click="increment">+</button>
-    <button @click="decrement">-</button>
+    <button @click="CommitIncrement">+</button>
+    <button @click="CommitDecrement">-</button>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-  import { mapActions } from 'vuex'
+  import { mapGetters ,mapActions,mapMutations} from 'vuex'
 
   export default {
     computed: {
@@ -21,13 +20,10 @@
     },
     methods: {
     ...mapActions([
-      'increment', // 映射 this.increment() 为 this.$store.dispatch('increment')
-      'decrement'
-    ])
-      //...mapActions({
-      //  add: 'increment' // 映射 this.add() 为 this.$store.dispatch('increment')
-      //})
-    }
+      'CommitIncrement',
+      'CommitDecrement'
+    ]),
+    },
   }
 
 </script>

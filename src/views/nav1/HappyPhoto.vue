@@ -47,10 +47,6 @@
 					}
 				}).catch((err)=>{
 					this.listLoading=false;
-					this.$message({
-						message:"网络请求失败，请重试！",
-						type:"warning"
-					})
 				})
 			},
 		}

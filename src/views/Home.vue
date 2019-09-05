@@ -75,7 +75,7 @@
 	export default {
 		data() {
 			return {
-				sysName:'HELLO LCL',
+				sysName:'LOGO',
 				collapsed:false,
 				sysUserName: '',
 				sysUserAvatar: '',
@@ -96,7 +96,7 @@
 				this.$confirm('确认退出吗?', '提示', {
 				}).then(() => {
 					localStorage.removeItem('user');
-					_this.$router.push('/login');
+					_this.$router.push('/');
 				}).catch(() => {
 
 				});
@@ -112,7 +112,7 @@
 			}
 		},
 		mounted() {
-			var user = localStorage.getItem('user');
+			let user = localStorage.getItem('user');
 			if (user) {
 				user = JSON.parse(user);
 				this.sysUserName = user.name || '';
@@ -133,7 +133,7 @@
 		.header {
 			height: 60px;
 			line-height: 60px;
-			background: #0aafe6;
+			background: #2baae6;
 			color:#fff;
 			.userinfo {
 				text-align: right;
@@ -226,7 +226,6 @@
 				overflow-y: scroll;
 				padding: 20px;
 				.breadcrumb-container {
-					//margin-bottom: 15px;
 					.title {
 						width: 200px;
 						float: left;
