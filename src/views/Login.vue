@@ -42,18 +42,6 @@
                         {required: true, message: '请输入密码', trigger: 'blur'},
                     ]
                 },
-                ruleForm1: {
-                    account: '13594347817',
-                    checkPass: '123456'
-                },
-                rules1: {
-                    account: [
-                        {required: true, message: '请输入账号', trigger: 'blur'},
-                    ],
-                    checkPass: [
-                        {required: true, message: '请输入密码', trigger: 'blur'},
-                    ]
-                },
                 checked: true
             };
         },
@@ -75,7 +63,6 @@
                             this.logining = false;
                             if (data.code == 200) {
                                 var user = {name: data.data.name, img: data.data.img};
-                                localStorage.setItem("user", user);
                                 this.$store.commit("setToken", user);
                                 this.$router.push({path: '/HappyPassages'});
                             } else {

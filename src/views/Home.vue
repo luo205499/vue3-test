@@ -112,9 +112,8 @@
 			}
 		},
 		mounted() {
-			let user = localStorage.getItem('user');
+			let user = this.$store.state.token;
 			if (user) {
-				user = JSON.parse(user);
 				this.sysUserName = user.name || '';
 				this.sysUserAvatar = user.img || '';
 			}
