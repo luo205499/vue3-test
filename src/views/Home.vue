@@ -92,10 +92,10 @@
 			},
 			//退出登录
 			logout: function () {
-				var _this = this;
+				let _this = this;
 				this.$confirm('确认退出吗?', '提示', {
 				}).then(() => {
-					localStorage.removeItem('user');
+					this.$store.state.token="";
 					_this.$router.push('/');
 				}).catch(() => {
 

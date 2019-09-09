@@ -12,6 +12,12 @@ export default [
         hidden: true
     },
     {
+        path: '/Register',
+        component: () => import ('../views/Register.vue'),
+        name: '',
+        hidden: true
+    },
+    {
         path: '/Home',
         component: () => import ('../views/Home.vue'),
         name: '我的快乐',

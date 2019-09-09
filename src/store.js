@@ -14,6 +14,10 @@ export default new Vuex.Store({
         },
         decrement(state) {
             state.count -= 1;
+        },
+        setToken(state,token){
+            state.token=token;
+            console.log(JSON.stringify(token))
         }
     },
     actions: {
