@@ -49,8 +49,8 @@
             handleReset2() {
                 this.$refs.ruleForm2.resetFields();
             },
-            handleSubmit2(ev) {
-                var _this = this;
+            handleSubmit2() {
+                let _this = this;
                 this.$refs.ruleForm2.validate((valid) => {
                     this.logining = true;
                     if (valid) {
@@ -63,12 +63,13 @@
                             this.logining = false;
                             if (data.code == 200) {
                                 var user = {name: data.data.name, img: data.data.img};
-                                this.$store.commit("setToken", user);
+                                this.$store.commit("setUser", user);
                                 this.$router.push({path: '/HappyPassages'});
                             } else {
                                 this.$message.error('账号或者密码错误');
                             }
                         }).catch(err => {
+                            console.log(err);
                             this.logining = false;
                         });
                     } else {

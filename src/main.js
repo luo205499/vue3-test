@@ -14,8 +14,7 @@ Vue.config.productionTip = false;
 
 router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
-        if (store.state.token) {  // 通过vuex state获取当前的token是否存在
-            // localStorage.getItem('user')
+        if (store.state.user) {  // 通过vuex state获取当前的token是否存在
             next();
         } else {
             Message({
@@ -29,7 +28,7 @@ router.beforeEach((to, from, next) => {
     } else {
         next();
     }
-})
+});
 
 new Vue({
     router,

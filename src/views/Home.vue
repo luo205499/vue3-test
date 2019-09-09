@@ -95,7 +95,7 @@
 				let _this = this;
 				this.$confirm('确认退出吗?', '提示', {
 				}).then(() => {
-					this.$store.state.token="";
+					this.$store.state.user="";
 					_this.$router.push('/');
 				}).catch(() => {
 
@@ -112,7 +112,7 @@
 			}
 		},
 		mounted() {
-			let user = this.$store.state.token;
+			let user = this.$store.state.user;
 			if (user) {
 				this.sysUserName = user.name || '';
 				this.sysUserAvatar = user.img || '';

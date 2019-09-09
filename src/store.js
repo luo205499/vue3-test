@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         count: 10,
-        token: ''
+        user: ''
     },
     mutations: {
         increment(state) {
@@ -15,9 +15,8 @@ export default new Vuex.Store({
         decrement(state) {
             state.count -= 1;
         },
-        setToken(state,token){
-            state.token=token;
-            console.log(JSON.stringify(token))
+        setUser(state,user){
+            state.user=user;
         }
     },
     actions: {
