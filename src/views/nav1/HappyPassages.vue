@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="passages">
         <el-row :gutter="20">
             <el-col :span="12" :offset="6">
                 <div>
@@ -21,10 +21,10 @@
                             :page-sizes=pageSizes
                             :page-size=pageSize
                             layout="total,sizes, prev, pager, next, jumper"
-                            :total="400" v-show="dataList.length!=0">
+                            :total="400" v-show="dataList.length!==0">
                     </el-pagination>
                 </div>
-                <span v-show="dataList.length==0">暂无数据...</span>
+                <span v-show="dataList.length===0">暂无数据...</span>
             </el-col>
 
         </el-row>
@@ -40,33 +40,36 @@
                 dataList: [],
                 currentPage: 1,
                 listLoading: false,
-                pageSize:5,
-                pageSizes:[5,10,20]
+                pageSize: 5,
+                pageSizes: [5, 10, 20]
             }
         },
         mounted() {
             this.getData();
         },
         methods: {
+            backTop() {
+                document.getElementById("passages").scrollIntoView();
+            },
             getData() {
                 this.listLoading = true;
-                this.page = this.page + 1;
                 get('', {type: "text", page: this.currentPage, count: this.pageSize}).then((data) => {
-                    this.listLoading = false;
-                    if (data.code == 200) {
+                    if (data.code === 200) {
                         this.dataList = data.result;
                     }
-                }).catch((err) => {
-                    this.listLoading = false;
-                })
+                });
+                this.listLoading = false;
             },
             handleSizeChange(val) {
-                this.pageSize=val;
+                this.pageSize = val;
                 this.getData();
+                // this.backTop();
+
             },
             handleCurrentChange(val) {
-                this.currentPage=val;
+                this.currentPage = val;
                 this.getData();
+                this.backTop();
             }
         }
     }
@@ -87,10 +90,5 @@
 
     .data-love {
         text-align: right;
-    }
-
-    .more {
-        margin-left: 40px;
-        width: 100px;
     }
 </style>

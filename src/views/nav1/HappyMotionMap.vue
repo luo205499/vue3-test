@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="motionMap">
 		<el-row :gutter="20">
 			<el-col :span="12" :offset="6"><div>
 				<ul style="list-style: none" v-loading="listLoading">
@@ -9,13 +9,21 @@
 							<span class="data-text">{{i.name}}</span>
 						</div>
 						<p><span>{{i.text}}</span></p>
-						<p><img class="data-img" :src=i.images /></p>
+						<p><img class="data-img" :src="i.images" /></p>
 						<p class="data-love"><i style="color: rgba(255,65,70,0.76)" class="fa fa-heart-o"></i><span class="data-up">{{i.up}}</span></p>
 					</li>
 				</ul>
+				<el-pagination
+						@size-change="handleSizeChange"
+						@current-change="handleCurrentChange"
+						:current-page="currentPage"
+						:page-sizes=pageSizes
+						:page-size=pageSize
+						layout="total,sizes, prev, pager, next, jumper"
+						:total="400" v-show="dataList.length!==0">
+				</el-pagination>
 			</div>
-				<el-button v-show="dataList.length!=0" type="button" class="more" @click="getData()">再爽一次</el-button>
-				<span v-show="dataList.length==0">暂无数据...</span>
+				<span v-show="dataList.length===0">暂无数据...</span>
 			</el-col>
 
 		</el-row>
@@ -28,8 +36,10 @@
 		data(){
 			return{
 				dataList:[],
-				page: 1,
+				currentPage: 1,
 				listLoading:false,
+				pageSizes:[5,10,20],
+				pageSize:5,
 
 			}
 		},
@@ -37,18 +47,28 @@
 			this.getData();
 		},
 		methods:{
+			backTop() {
+				document.getElementById("motionMap").scrollIntoView();
+			},
 			getData(){
 				this.listLoading=true;
-				this.page=this.page+1;
-				get('',{type:"gif",page:this.page,count:10}).then((data)=>{
-					this.listLoading=false;
-					if(data.code==200){
+				get('',{type:"gif",page:this.currentPage,count:this.pageSize}).then((data)=>{
+					if(data.code===200){
 						this.dataList=data.result;
 
 					}
-				}).catch((err)=>{
-					this.listLoading=false;
-				})
+				});
+				this.listLoading=false;
+			},
+			handleSizeChange(val) {
+				this.pageSize=val;
+				this.getData();
+				this.backTop();
+			},
+			handleCurrentChange(val) {
+				this.currentPage=val;
+				this.getData();
+				this.backTop();
 			},
 		}
 	}
@@ -67,9 +87,5 @@
 	}
 	.data-love{
 		text-align: right;
-	}
-	.more{
-		margin-left: 40px;
-		width: 100px;
 	}
 </style>

@@ -6,7 +6,13 @@ import ElementUI, {Message} from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'font-awesome/css/font-awesome.min.css'
 import animate from 'animate.css'
+import echarts from 'echarts'
+import SlideVerify from 'vue-monoplasty-slide-verify';
 
+
+
+Vue.use(SlideVerify);
+Vue.prototype.echarts = echarts;
 Vue.use(ElementUI);
 Vue.use(animate);
 Vue.config.productionTip = false;
